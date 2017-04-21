@@ -89,5 +89,70 @@ failures on Auth DNS (Roots, ccTLDs, etc...)?}
 \end{frame}
 
 
+\begin{frame}[fragile]
+	\frametitle{Step-by-step}
+	
+\begin{enumerate}
+ \item Download Ripe datasets and parse them
+ \begin{itemize}
+  \item \url{https://github.com/ripe-dns-anomaly/chaos }
+  \item \texttt{parse-json.sh \$startTime \$endTime bins}
+  \item start and end = timestamps
+  \item bins= 600 (10minutes)
+ \end{itemize}
+
+ \item Then, run anomaly detection per letter and site:
+ \begin{itemize}
+  \item \url{https://github.com/ripe-dns-anomaly/anomalyDetector}
+  \item \texttt{python letter-level-detector.py data/k-root-ddos-20151130.csv 
+output/k-root-ddos-20151130-ad-hoc.csv}
+ \end{itemize}
+
+\item Then, it outputs anomalies per class type:
+\begin{itemize}
+ \item 
+\url{https://github.com/ripe-dns-anomaly/anomalyDetector/blob/master/README.md}
+\end{itemize}
+
+\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Algorithms for Anomaly Detection}
+	\begin{itemize}
+	 \item See discussion on 
+\url{https://github.com/ripe-dns-anomaly/anomalyDetector/blob/master/README.md}
+	\item Twitter's robust TS analysis, ARIMA, ad-hoc
+	\item We choose ad-hoc (ours)
+	\item Data is not periodical
+	\item We need more time to evaluate the best one
+	\item Less false positives
+	\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Demo}
+	
+	\large
+	\url{https://ripe-dns-anomaly.github.io}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Ready to be used by others}
+\begin{itemize}
+ \item Use by ccTLDs, Roots, etc.
+ \item Requirement: Ripe Atlas measurements with \textbf{chaos.id} support
+ \item Next: automate it to continuously probe it, detect and notify
+\end{itemize}
+
+\end{frame}
+
 
 \end{document}
