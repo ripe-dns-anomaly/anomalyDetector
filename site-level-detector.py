@@ -28,9 +28,9 @@ def letterDetector(infile,outFile):
         rownProbes=row["nProbes"]
         #print(str(rownProbes) + "," + str(probesThreshold))
         if rownProbes < probesThreshold :
-            outputFile.write("F1 Anomaly at : " + str(row["timestamp"])+"\n")
+            outputFile.write("F1 Anomaly at:," + str(row["timestamp"])+"," + str(row["nProbes"])+"\n")
         elif  rownProbes > probesUpThreshold :
-            outputFile.write("F3 Anomaly at : " + str(row["timestamp"]) + "\n")
+            outputFile.write("F3 Anomaly at:," + str(row["timestamp"]) +"," + str(row["nProbes"])+"\n")
     #now, detect F2 types of failures:
             
     medianRTT=df["q50RTT"].median()
@@ -43,7 +43,7 @@ def letterDetector(infile,outFile):
         rowRTT=row["q50RTT"]
         #print(str(rownProbes) + "," + str(probesThreshold))
         if rowRTT > rttThreshold:
-            outputFile.write("F2 Anomaly at : " + str(row["timestamp"])+"\n")
+            outputFile.write("F2 Anomaly at:," + str(row["timestamp"])+"," +str(row["q50RTT"])+"\n")
 
 
 if len(sys.argv)==3:
