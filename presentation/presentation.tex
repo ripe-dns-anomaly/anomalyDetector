@@ -51,7 +51,7 @@
 	
 	\begin{itemize}
 	\item Christian Doerr (TU Delft)
-	\item Ella 
+	\item Ella Titova (VivaCell)
 	\item Giovane Moura (SIDN Labs)
 	\item Jan Harm Kuipers (University of Twente/SIDN Labs)
 	\item Moritz M\"uller (SIDN Labs/University of Twente)
@@ -97,9 +97,10 @@ failures on Auth DNS (Roots, ccTLDs, etc...)?}
  \item Download Ripe datasets and parse them
  \begin{itemize}
   \item \url{https://github.com/ripe-dns-anomaly/chaos }
-  \item \texttt{parse-json.sh \$startTime \$endTime bins}
+  \item \texttt{parse-json.sh \$startTime \$endTime bins \$mid}
   \item start and end = timestamps
   \item bins= 600 (10minutes)
+  \item mid = Ripe measurement ID
  \end{itemize}
 
  \item Then, run anomaly detection per letter and site:
