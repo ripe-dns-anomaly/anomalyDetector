@@ -33,14 +33,14 @@ def letterDetector(infile,outFile):
             
     medianRTT=df["q50RTT"].median()
     sdRTT=df["q50RTT"].std()
-    rttThreshold = medianRTT - 3*sdRTT
+    rttThreshold = medianRTT + 3*sdRTT
 
     #then now, we need to go line by line and see if it's an anomaly
 
     for index, row in df.iterrows():
         rowRTT=row["q50RTT"]
         #print(str(rownProbes) + "," + str(probesThreshold))
-        if rttThreshold <= rttThreshold:
+        if rowRTT >= rttThreshold:
             outputFile.write("F2 Anomaly at : " + str(row["timestamp"])+"\n")
 
 
