@@ -1,4 +1,4 @@
-#Anomaly Detector
+# Anomaly Detector
 
 We describe here how we detect anomalies using Ripe Atlas DNS CHAOS measurements.
 
