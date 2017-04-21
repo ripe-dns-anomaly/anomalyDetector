@@ -12,6 +12,7 @@
 
 
 \usepackage{hyperref}
+\usepackage{cancel}
 
 \hypersetup{
     colorlinks,%
@@ -26,10 +27,10 @@
 \title{Anomaly Detection on DNS Auths }
 \subtitle{Root DNS, ccTLDs and DNS providers}
 
-\author[\large \textbf{Team  Schnabeltier}
+\author[\large \textbf{Team \cancel{Schnabeltier}}
 
 ]
-{\large \textbf{Team  Schnabeltier}\\
+{\large \textbf{Team \cancel{Schabeltier}Anomalizers}\\
 \vspace{0.5cm}
 \includegraphics[width=5cm]{fig/Schnabeltier.jpg}
 }
@@ -90,7 +91,7 @@ failures on Auth DNS (Roots, ccTLDs, etc...)?}
 
 
 \begin{frame}[fragile]
-	\frametitle{Step-by-step}
+	\frametitle{Step-by-step - CHAOS/RTT}
 	
 \begin{enumerate}
  \item Download Ripe datasets and parse them
@@ -116,6 +117,29 @@ output/k-root-ddos-20151130-ad-hoc.csv}
 
 \end{enumerate}
 
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Step-by-step - Path}
+	
+\begin{enumerate}
+ \item Download Ripe datasets and parse them
+ \begin{itemize}
+  \item \url{https://github.com/ripe-dns-anomaly/traceroute }
+  \item \texttt{python traceget.py --start \$startTime --end \$endTime --msmid \$msmid}
+  \item start and end = timestamps
+  \item msmid = atlas measurement id (5001 for K-root)
+ \end{itemize}
+
+ \item Then, convert the format:
+ \begin{itemize}
+  \item \url{https://github.com/ripe-dns-anomaly/traceroute}
+  \item \texttt{java -jar}
+ \end{itemize}
+
+ \item Last step: convert to webformat
+\end{enumerate}
 
 \end{frame}
 
