@@ -3,6 +3,10 @@
 We describe here how we detect anomalies using Ripe Atlas DNS CHAOS measurements.
 
 
+## Input files:
+
+   * Ground truth: `data/k-root-ddos-20151130.csv` : this file covers k-root during the ddos of nov30th , when we know for sure there were anomalies. As in [the Root DDoS paper][moura-imc2016].
+   * Random day: `data/k-root-20170401.csv`
 ## Possible algorithms
 
 Theare are many possible algorithms for time series anomaly detection. Most of them rely on periodical data to operate. In this hackaton, we used three algorithms:
@@ -31,13 +35,16 @@ The data flow is as follows:
 We document in this section what is the criteria for anomalies
 
 
-#### Letter-level anomalies 
+
+###Terminology
 
 We use the definition of Letter as in [the Root DDoS paper, Fig1][moura-imc2016]:
    * Letter: IP address of an anycast server (e.g.: k-root, or ns1.dns.nl)
    * Site: a physical location of a anycast site (e.g: kroot-ams )
    * Server: a server under a site (e.g.: k-root-ams-srv1)
 
+
+### Letter-level anomalies 
 
 We know that under stable conditions, anycast is pretty stable (see [this paper][wei-2017]). Meaning that probes should reach the same site over and over.
 
@@ -55,15 +62,15 @@ So as we have seen in [the Root DDoS paper][moura-imc2016], under an event, the 
    * F2: Performance issues: nProbes does not go down, but the RTT go up
    
 To detect them, we propose:   
-  * F1: nProbes number is reduced in at least 2x the standard deviation + median
-  * F2: q50RTT (quartile 50, or median) or q50TT goes at least 2x the standard devition + median
+  * F1: nProbes number is reduced in at least 3x the standard deviation + median
+  * F2: q50RTT (quartile 50, or median) or q50TT goes at least 3x the standard devaition + median
+  
+*To run it*:
+  * `python letter-level-detector.py $input $output`
    
 ### Site-level anomalies
 
 @Jan Harm
-
-
-   
 
 [twitter]: https://blog.twitter.com/2015/introducing-practical-and-robust-anomaly-detection-in-a-time-series
 [arima]: http://statsmodels.sourceforge.net/0.6.0/generated/statsmodels.tsa.arima_model.ARIMA.html
